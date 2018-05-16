@@ -28,4 +28,8 @@ function listaQconcorda($atts){
 	return $retorno;
 }
 add_shortcode('concordaPorID' , 'listaQconcorda');
+
+function functionTito($atts){
+
+}
 ?>
