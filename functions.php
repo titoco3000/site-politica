@@ -12,11 +12,18 @@ function listaQconcorda($atts){
 		'id' => ''
 	), $atts, 'listaQconcorda' );
 	$retorno = '';
-	$linkVotos = 'http://www.camara.leg.br/SitCamaraWS/Proposicoes.asmx/ObterVotacaoProposicaoPorID?idProposicao='.$atts["id"];
+	$linkVotos = 'https://www.camara.leg.br/SitCamaraWS/Proposicoes.asmx/ObterVotacaoProposicaoPorID?idProposicao='.$atts["id"];
 	echo $linkVotos;
 	$votos_vetor = wp_remote_get($linkVotos);
-	echo "<pre>";
-	print_r($votos_vetor);
+  $xml = simplexml_load_string($votos_vetor['body']);
+  $json = json_encode($xml);
+  $array = json_decode($json,TRUE);
+  echo "<pre>";
+  print_r($array);
+  echo "</pre>";
+  // echo "<pre>";
+	// print_r(esc_html($votos_vetor['body']));
+  // echo "</pre>";
 		// $retorno = '<form action = "" method="GET">
 	// 							<input type="radio" name="s_n" value="s" checked>sim<br>
 	// 							<input type="radio"name="s_n" value="n">não
