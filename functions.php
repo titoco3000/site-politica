@@ -101,15 +101,17 @@ function BuscaPL($atts){
   $PL_vetor=json_decode($PL_json['body']);
   $numDeLinks = count($PL_vetor ->links);
   $linkLast = $PL_vetor ->links[$numDeLinks -1];
-/*
+
+  print_r( $linkLast->href );
   while($linkPL != $linkLast){
 
     //code...
 
     $nPag++;
+
     $linkPL = "https://dadosabertos.camara.leg.br/api/v2/proposicoes?siglaTipo=PL&tramitacaoSenado=false&ordem=ASC&ordenarPor=id&pagina=".$nPag;
 
-  }*/
+  }
 
 
 
