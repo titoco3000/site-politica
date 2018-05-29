@@ -80,7 +80,40 @@ function listaQconcorda($atts){
 }
 add_shortcode('concordaPorID' , 'listaQconcorda');
 
-function functionTito($atts){
+function botaNaString($var){
 
+  print_r($var);
 }
+
+function BuscaPL($atts){
+  $atts = shortcode_atts( array(
+		'busca' => ''
+	), $atts, 'BuscaPL' );
+  $retorno = '';
+
+  //Recebe o link -> encontra o link final -> faz as coisas... ->define novo link -> verifica se é igual o link final
+
+
+	$linkPL = "https://dadosabertos.camara.leg.br/api/v2/proposicoes?siglaTipo=PL&tramitacaoSenado=false&ordem=ASC&ordenarPor=id&pagina=1";
+  $nPag = 1;
+
+  $PL_json = wp_remote_get($linkPL);
+  $PL_vetor=json_decode($PL_json['body']);
+  $numDeLinks = count($PL_vetor ->links);
+  $linkLast = $PL_vetor ->links[$numDeLinks -1];
+/*
+  while($linkPL != $linkLast){
+
+    //code...
+
+    $nPag++;
+    $linkPL = "https://dadosabertos.camara.leg.br/api/v2/proposicoes?siglaTipo=PL&tramitacaoSenado=false&ordem=ASC&ordenarPor=id&pagina=".$nPag;
+
+  }*/
+
+
+
+  return $retorno;
+}
+add_shortcode('BuscaPL' , 'BuscaPL');
 ?>
